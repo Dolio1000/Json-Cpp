@@ -6,7 +6,7 @@
 //   * 浮点要用“最短往返”输出——位数太少会丢精度，位数太多又难读。
 // =============================================================================
 
-#include "lenjson/json_utils.h"
+#include "internal/json_utils.h"
 
 #include <cerrno>
 #include <cmath>

@@ -6,12 +6,12 @@
 // 这是实现序列化器的小技巧。
 // =============================================================================
 
-#include "lenjson/json_writer.h"
+#include "internal/json_writer.h"
 
 #include <cstddef>
 #include <string>
 
-#include "lenjson/json_utils.h"
+#include "internal/json_utils.h"
 
 namespace lenjson {
 

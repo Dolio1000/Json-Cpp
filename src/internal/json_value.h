@@ -49,8 +49,7 @@
 #include <variant>
 #include <vector>
 
-#include "lenjson/json_error.h"
-#include "lenjson/json_export.h"
+#include "json_error.h"
 
 namespace lenjson {
 
@@ -68,12 +67,14 @@ enum class JsonType : std::uint8_t {
 };
 
 // 把类型枚举转成人类可读的名字，主要用于拼装错误信息。
-LENJSON_API const char* to_string(JsonType type) noexcept;
+const char* to_string(JsonType type) noexcept;
 
 // -----------------------------------------------------------------------------
 // Value —— 一个可以存放任意 JSON 值的动态类型。
 // -----------------------------------------------------------------------------
-class LENJSON_API Value {
+// 本类是内部实现，不对外导出：C 接口通过不透明句柄 lenjson_value 访问它。
+// 这样 DLL 的导出表里只有 C 符号，g++ 编译的库才能被 MSVC 安全调用。
+class Value {
 public:
     // 数组：顺序容器，元素仍是 Value（递归）。
     using Array = std::vector<Value>;
@@ -211,10 +212,10 @@ private:
 // -----------------------------------------------------------------------------
 // 便捷的自由函数（与成员函数等价，写起来更顺手）
 // -----------------------------------------------------------------------------
-LENJSON_API void swap(Value& a, Value& b) noexcept;
-LENJSON_API Value parse(std::string_view text);
-LENJSON_API std::string dump(const Value& value, int indent = -1, bool ensure_ascii = false);
-LENJSON_API std::ostream& operator<<(std::ostream& os, const Value& value);
+void swap(Value& a, Value& b) noexcept;
+Value parse(std::string_view text);
+std::string dump(const Value& value, int indent = -1, bool ensure_ascii = false);
+std::ostream& operator<<(std::ostream& os, const Value& value);
 
 // =============================================================================
 // 模板成员的定义（必须放在头文件里，才能被各编译单元实例化）

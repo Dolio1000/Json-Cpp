@@ -21,12 +21,12 @@
 #include <string>
 #include <utility>
 
-#include "lenjson/json_export.h"
-
 namespace lenjson {
 
 // 库内所有异常的基类。
-class LENJSON_API JsonException : public std::runtime_error {
+// 注意：本文件是内部实现，异常类型不对外导出——C 接口会在库内部把它们
+// 转换成状态码，异常对象绝不跨 DLL 边界（两套工具链的异常实现不兼容）。
+class JsonException : public std::runtime_error {
 public:
     explicit JsonException(const std::string& message) : std::runtime_error(message) {}
 };
@@ -36,7 +36,7 @@ public:
 // 相比普通异常，它额外记录了“错误发生的位置”（字节下标 / 行 / 列），
 // 这样在解析配置文件、网络报文时能快速定位到具体哪一行有问题。
 // -----------------------------------------------------------------------------
-class LENJSON_API ParseError : public JsonException {
+class ParseError : public JsonException {
 public:
     ParseError(std::string detail, std::size_t line, std::size_t column, std::size_t position)
         : JsonException(build_message(detail, line, column)),
@@ -72,7 +72,7 @@ private:
 // 例如对一个数字调用 as_string()，或对一个对象调用 as_array()。
 // 把“类型错误”单独成类，方便调用方区分“数据格式错”与“解析错”。
 // -----------------------------------------------------------------------------
-class LENJSON_API TypeException : public JsonException {
+class TypeException : public JsonException {
 public:
     explicit TypeException(const std::string& message) : JsonException(message) {}
 };
@@ -81,7 +81,7 @@ public:
 // OutOfRange —— 越界 / 键不存在。
 // 例如数组下标访问越界，或在对象里 at("不存在的键")。
 // -----------------------------------------------------------------------------
-class LENJSON_API OutOfRange : public JsonException {
+class OutOfRange : public JsonException {
 public:
     explicit OutOfRange(const std::string& message) : JsonException(message) {}
 };

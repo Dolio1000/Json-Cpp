@@ -1,3 +1,15 @@
-build
+build*
+# 发布包是构建产物，不入库
+dist/
 .vscode
 *.exe
+*.o
+*.obj
+*.dll
+*.a
+*.lib
+*.exp
+.commandcode
+CMakeFiles/
+CMakeCache.txt
+cmake

@@ -10,13 +10,12 @@
 
 #include <string>
 
-#include "lenjson/json_export.h"
-#include "lenjson/json_value.h"
+#include "json_value.h"
 
 namespace lenjson {
 
 // 序列化的可调项。
-struct LENJSON_API DumpOptions {
+struct DumpOptions {
     // 缩进宽度：-1 表示紧凑输出（无空格无换行）；>=0 表示美化输出，
     // 每一层用 indent 个 indent_char 缩进。
     int  indent = -1;
@@ -27,7 +26,7 @@ struct LENJSON_API DumpOptions {
 };
 
 // 序列化器。
-class LENJSON_API Writer {
+class Writer {
 public:
     static std::string write(const Value& value, const DumpOptions& options = DumpOptions());
 

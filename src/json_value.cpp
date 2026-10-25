@@ -9,7 +9,7 @@
 // 这样两个文件各自职责单一、体量都控制在 600 行以内。
 // =============================================================================
 
-#include "lenjson/json_value.h"
+#include "internal/json_value.h"
 
 #include <utility>
 

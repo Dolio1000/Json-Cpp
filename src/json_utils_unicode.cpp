@@ -8,7 +8,7 @@
 //     所以编解码时要注意 0x10000 以上的码点（4 字节 UTF-8）。
 // =============================================================================
 
-#include "lenjson/json_utils.h"
+#include "internal/json_utils.h"
 
 #include <cstddef>
 #include <cstdint>

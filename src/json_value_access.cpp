@@ -5,13 +5,13 @@
 // 不涉及对象生命周期与类型系统本身。拆成两个文件能让每个文件都短小清晰。
 // =============================================================================
 
-#include "lenjson/json_value.h"
+#include "internal/json_value.h"
 
 #include <ostream>
 #include <utility>
 
-#include "lenjson/json_parser.h"
-#include "lenjson/json_writer.h"
+#include "internal/json_parser.h"
+#include "internal/json_writer.h"
 
 namespace lenjson {
 

@@ -19,13 +19,12 @@
 #include <cstddef>
 #include <string>
 
-#include "lenjson/json_export.h"
-#include "lenjson/json_value.h"
+#include "json_value.h"
 
 namespace lenjson {
 
 // 解析行为可调项。
-struct LENJSON_API ParseOptions {
+struct ParseOptions {
     // 最大嵌套深度。递归下降会随嵌套加深而消耗栈，恶意构造的超深 JSON
     // （如几万层 '['）可能把栈“撑爆”。设置上限可把崩溃变成可捕获的异常。
     std::size_t max_depth = 512;
@@ -35,7 +34,7 @@ struct LENJSON_API ParseOptions {
 };
 
 // 解析器。对外只需要使用静态方法 parse()。
-class LENJSON_API Parser {
+class Parser {
 public:
     // 解析入口：成功返回 Value，失败抛 ParseError（含行列位置）。
     static Value parse(const std::string& text, const ParseOptions& options = ParseOptions());

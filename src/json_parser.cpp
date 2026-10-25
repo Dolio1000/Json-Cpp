@@ -6,14 +6,14 @@
 // 返回时 pos_ 指向本结构之后的第一个字符（尚未跳空白）。
 // =============================================================================
 
-#include "lenjson/json_parser.h"
+#include "internal/json_parser.h"
 
 #include <cctype>
 #include <cstdlib>
 #include <cstring>
 #include <string>
 
-#include "lenjson/json_utils.h"
+#include "internal/json_utils.h"
 
 namespace lenjson {
 
